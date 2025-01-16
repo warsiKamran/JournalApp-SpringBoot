@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.example.restApi.enums.Sentiment;
 import com.mongodb.lang.NonNull;
 
 import lombok.Data;
@@ -27,5 +28,7 @@ public class JournalEntry{
     private String content;
 
     private LocalDateTime date;
+
+    private Sentiment sentiment;
 }
 

@@ -13,6 +13,7 @@ import com.example.restApi.response.WeatherResponse;
 @Service
 public class WeatherService{
 
+    private static final String apiKey = "6773db46a8df04837f85976722575397";
     
     // private static final String API = "http://api.weatherstack.com/current?access_key=API_KEY&query=CITY";
 
@@ -22,11 +23,28 @@ public class WeatherService{
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private RedisService redisService;
+
     public WeatherResponse getWeather(String city){
-        String finalApi = appCache.APP_CACHE.get("weather_api").replace(Placeholders.CITY, city).replace(Placeholders.API_KEY, apiKey);
-        ResponseEntity<WeatherResponse> weatherResponse = restTemplate.exchange(finalApi, HttpMethod.GET, null, WeatherResponse.class);
-        WeatherResponse body = weatherResponse.getBody();
-        return body;
+
+        WeatherResponse weatherResponse = redisService.get("weather_of_" + city, WeatherResponse.class);
+
+        if(weatherResponse != null){
+            return weatherResponse;
+        }
+
+        else{
+            String finalApi = appCache.APP_CACHE.get("weather_api").replace(Placeholders.CITY, city).replace(Placeholders.API_KEY, apiKey);
+            ResponseEntity<WeatherResponse> response = restTemplate.exchange(finalApi, HttpMethod.GET, null, WeatherResponse.class);
+            WeatherResponse body = response.getBody();
+
+            if(body != null){
+                redisService.set("weather_of_" + city, body, 300l);
+            }
+
+            return body;
+        }
     }
 }
 

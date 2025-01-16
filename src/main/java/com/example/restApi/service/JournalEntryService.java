@@ -48,16 +48,13 @@ public class JournalEntryService{
     public void deleteById(ObjectId id, String userName){
 
         try{
-
             User user = userService.findByuserName(userName);
-
             boolean isRemoved = user.getJournalEntries().removeIf(x -> x.getId().equals(id));
 
             if(isRemoved){
                 userService.saveEntry(user);
                 journalEntryRepository.deleteById(id);
-            }
-            
+            }    
         } 
         
         catch (Exception e){
