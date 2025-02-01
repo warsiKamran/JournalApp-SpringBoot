@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.restApi.entity.User;
 import com.example.restApi.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Admin API's")
 @RequestMapping("/admin")
 public class AdminController{
 
@@ -22,6 +26,7 @@ public class AdminController{
     UserService userService;
 
     @GetMapping("/all-users")
+    @Operation(summary = "Get all users")
     public ResponseEntity<?> getAllUsers(){
 
         List<User> allUsers = userService.getAll();

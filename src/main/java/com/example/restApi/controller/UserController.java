@@ -18,8 +18,12 @@ import com.example.restApi.response.WeatherResponse;
 import com.example.restApi.service.UserService;
 import com.example.restApi.service.WeatherService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/user")
+@Tag(name = "User API's", description = "create, update, greet and delete user")
 public class UserController{
 
     @Autowired
@@ -32,6 +36,7 @@ public class UserController{
     private WeatherService weatherService;
 
     @PutMapping
+    @Operation(summary = "Update a user")
     public ResponseEntity<?> updateUser(@RequestBody User user){
         
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -49,6 +54,7 @@ public class UserController{
     }
 
     @DeleteMapping
+    @Operation(summary = "Delete a user")
     public ResponseEntity<?> deleteUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         userRepository.deleteByUserName(authentication.getName());
@@ -56,6 +62,7 @@ public class UserController{
     }
 
     @GetMapping
+    @Operation(summary = "Get weather status")
     public ResponseEntity<?> greet(){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

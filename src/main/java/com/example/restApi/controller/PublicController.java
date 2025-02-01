@@ -17,10 +17,12 @@ import com.example.restApi.service.UserDetailsServiceImpl;
 import com.example.restApi.service.UserService;
 import com.example.restApi.util.JwtUtil;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
+@Tag(name = "Public API's")
 @RequestMapping("/public")
 public class PublicController{
 
@@ -36,9 +38,9 @@ public class PublicController{
     @Autowired
     private JwtUtil jwtUtil;
 
-    @GetMapping
+    @GetMapping("health-check")
     public String getHealth(){
-        return "OK";
+        return "Ok";
     }
 
     @PostMapping("signup")
