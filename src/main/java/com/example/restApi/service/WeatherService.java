@@ -12,8 +12,6 @@ import com.example.restApi.response.WeatherResponse;
 
 @Service
 public class WeatherService{
-
-    private static final String apiKey = "6773db46a8df04837f85976722575397";
     
     // private static final String API = "http://api.weatherstack.com/current?access_key=API_KEY&query=CITY";
 
