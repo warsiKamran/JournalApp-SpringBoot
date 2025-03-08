@@ -41,6 +41,9 @@ public class SpringSecurity {
                 .build();
     }
 
+    //integrating everything
+    //As soon as we give username and password in postman it will check whether we can bring user from userDetailService or not.
+    //After bringing it , we will start password matching
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
