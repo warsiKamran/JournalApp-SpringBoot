@@ -29,9 +29,8 @@ public class SpringSecurity {
     private JwtFilter jwtFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {    //it provides a way to configure how requests are secured. By ensuring how request matching should be done.
+        
         return http.authorizeHttpRequests(request -> request
                         .requestMatchers("/public/**").permitAll()
                         .requestMatchers("/journal/**", "/user/**").authenticated()
@@ -58,3 +57,14 @@ public class SpringSecurity {
     }
 }
 
+/*
+http.authorizeRequests(): This tells Spring Security to start authorizing the requests.
+
+.antMatchers("/hello").permitAll(): This part specifies that HTTP requests matching the path `/hello` should be permitted (allowed) for all users, whether they are authenticated or not.
+
+.anyRequest().authenticated(): This is a more general matcher that specifies any request (not already matched by previous matchers) should be authenticated, meaning users have to provide valid credentials to access these endpoints.
+
+.and(): This is a method to join several configurations. It helps to continue the configuration from the root (HttpSecurity).
+
+.formLogin(): This enables form-based authentication. By default, it will provide a form for the user to enter their username and password. If the user is not authenticated and they try to access a secured endpoint, they'll be redirected to the default login form.
+*/
