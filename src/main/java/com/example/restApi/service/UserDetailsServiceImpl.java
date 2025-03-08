@@ -20,6 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
         User user = userRepository.findByuserName(username);
 
+        //after successfully getting the username now we are building the user in form of (UserDetails) that we have to return.
         if(user != null){
             return org.springframework.security.core.userdetails.User.builder()
                         .username(user.getUserName())
