@@ -38,7 +38,7 @@ public class UserController{
     @PutMapping
     @Operation(summary = "Update a user")
     public ResponseEntity<?> updateUser(@RequestBody User user){
-        
+        //whenever user get's authenticated it's details got stored in security context holder, from there we can fetch the details.
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
 
