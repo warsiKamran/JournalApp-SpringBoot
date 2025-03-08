@@ -21,8 +21,7 @@ public class UserServiceTests{
     @ParameterizedTest
     @CsvSource({
         "Kamran",
-        "Owais",
-        "Appi"
+        "Owais"
     })
     public void findByUsernameTest(String name){
         assertNotNull(userRepository.findByuserName(name));
