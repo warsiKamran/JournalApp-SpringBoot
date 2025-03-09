@@ -11,7 +11,7 @@ The Journal Application is a Spring Boot-based web application that allows users
 - Secure data storage using MongoDB
 - Redis integration for caching
 - Kafka for real-time event processing
-- 
+
 ## Tech Stack
 - **Backend**: Spring Boot, Spring Security, Spring Data
 - **Database**: MongoDB
