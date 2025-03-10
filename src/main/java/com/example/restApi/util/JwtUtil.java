@@ -63,3 +63,6 @@ public class JwtUtil{
     }
 }
 
+//Header - Consists of type of token and the signing algorithm being used, such as HMAC, SHA256 or RSA.
+//Payload - It contains the claims, i.e. the data which we are sending.
+//Signature - To verify that the sender of the message wasn't changed along the way.
