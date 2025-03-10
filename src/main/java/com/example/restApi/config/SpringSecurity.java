@@ -36,7 +36,7 @@ public class SpringSecurity {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll())
                 .csrf(AbstractHttpConfigurer::disable)   //if it is enabled then spring expects to recieve csrf token which we are not sending that's why it is disabled.
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) //first run jwtFilter then run UsernamePasswordAuthenticationFilter.
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) //first run jwtFilter then run UsernamePasswordAuthenticationFilter(basic authentication of spring).
                 .build();
     }
 
