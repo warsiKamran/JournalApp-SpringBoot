@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import com.example.restApi.filter.JwtFilter;
 import com.example.restApi.service.UserDetailsServiceImpl;
 
@@ -37,7 +36,7 @@ public class SpringSecurity {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll())
                 .csrf(AbstractHttpConfigurer::disable)   //if it is enabled then spring expects to recieve csrf token which we are not sending that's why it is disabled.
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) //first run jwtFilter then run UsernamePasswordAuthenticationFilter.
                 .build();
     }
 
