@@ -13,7 +13,7 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil{
 
-    private String SECRET_KEY = "hkDsIbn+xHn4KJpllvgmkYvoFLoInRiit7cYkBUFqTcpJN1EiOiyWIz54XiDfH81\n";
+    private String SECRET_KEY = "hkDsIbn+xHn4KJpllvgmkYvoFLoInRiit7cYkBUFqTcpJN1EiOiyWIz54XiDfH81\n";   //it should be more than 32 bytes
 
     private SecretKey getSigningKey(){
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
@@ -41,7 +41,7 @@ public class JwtUtil{
     }
 
     public String generateToken(String username){
-        Map<String, Object> claims = new HashMap<>();
+        Map<String, Object> claims = new HashMap<>();   //claims are send in payload part
         return createToken(claims, username);
     }
 
